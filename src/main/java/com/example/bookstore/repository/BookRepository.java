@@ -1,6 +1,7 @@
 package com.example.bookstore.repository;
 
 import com.example.bookstore.model.BookDTO;
+import com.example.bookstore.model.BookListDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -18,6 +19,11 @@ public class BookRepository {
 
     public void addBook(BookDTO bookDTO) {
         this.bookDTOList.add(bookDTO);
+    }
+
+    public void addCollection(BookListDTO bookListDTO) {
+        this.bookDTOList.addAll(bookListDTO.getBookDTOList());
+        System.out.println("Livros adicionados com sucesso: " + this.bookDTOList.size());
     }
 
     public BookDTO getBookById(Integer id) {
@@ -42,6 +48,7 @@ public class BookRepository {
                 book.setName(book.getName());
                 return true;
             }
+            System.out.println("Livro atualizado com sucesso: " + this.bookDTOList.get(id));
         }
         return false;
     }
